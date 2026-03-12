@@ -1,4 +1,3 @@
-import base64url from "base64url";
 import * as uuid from "uuid";
 
 export const getDid = () => {

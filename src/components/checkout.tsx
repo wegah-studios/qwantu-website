@@ -1,4 +1,4 @@
-import { userAppContext } from "@/context/appContext";
+import { useAppContext } from "@/context/appContext";
 import { getDid, inputErrors, normalizeInput } from "@/lib/appUtils";
 import { ApiResponse, Config, Status } from "@/types/common";
 import {
@@ -26,7 +26,7 @@ const CheckoutComponent = ({
   setStatus: React.Dispatch<React.SetStateAction<Status>>;
 }) => {
   const router = useRouter();
-  const { setCaptchaReturnUrl } = userAppContext();
+  const { setCaptchaReturnUrl } = useAppContext();
 
   const [checkoutToken, setCheckoutToken] = useState<string | null>(null);
   const [checkoutStep, setCheckoutStep] = useState<number>(0);
@@ -54,7 +54,7 @@ const CheckoutComponent = ({
       });
 
       const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.101:3001") +
+        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
         "/v1/users/checkout";
 
       const response = await axios.post(
@@ -191,7 +191,7 @@ const CheckoutComponent = ({
       }
 
       const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.101:3001") +
+        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
         "/v1/payments/initiate";
       await axios.post(endpoint, body, {
         headers: {
@@ -372,7 +372,7 @@ const CheckoutComponent = ({
               label="Invite Code"
               name="inviteCode"
               value={form.inviteCode}
-              placeholder="Your friend's invite code."
+              placeholder="Your friend’s invite code."
               onChange={handleChange}
               onBlur={handleBlur}
               error={!!errors.inviteCode && touched.has("inviteCode")}
@@ -403,7 +403,7 @@ const CheckoutComponent = ({
             >
               If you invite just{" "}
               <strong>{config?.inviteThreshold || 2} friends</strong> using your
-              invite code you'll be able to get a full refund.
+              invite code you’ll be eligible for a full refund.
             </Typography>
             <Button
               onClick={handleSubmit}

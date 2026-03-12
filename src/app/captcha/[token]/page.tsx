@@ -9,12 +9,12 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { getDid } from "@/lib/appUtils";
-import { userAppContext } from "@/context/appContext";
+import { useAppContext } from "@/context/appContext";
 import ContactForm from "@/components/contactForm";
 
 const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
   const router = useRouter();
-  const { captchaReturnUrl, setCaptchaReturnUrl } = userAppContext();
+  const { captchaReturnUrl, setCaptchaReturnUrl } = useAppContext();
 
   const [_challengeToken, setChallengeToken] = useState<string>("");
   const [status, setStatus] = useState<Status>({
@@ -84,7 +84,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
   ) => {
     try {
       const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.101:3001") +
+        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
         "/v1/captcha/verify";
 
       await axios.post(

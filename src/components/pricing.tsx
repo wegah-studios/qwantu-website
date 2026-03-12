@@ -7,7 +7,7 @@ import { Check } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getDid } from "@/lib/appUtils";
-import { userAppContext } from "@/context/appContext";
+import { useAppContext } from "@/context/appContext";
 
 const PricingComponent = ({
   setupToken,
@@ -23,7 +23,7 @@ const PricingComponent = ({
   setStep: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
   const router = useRouter();
-  const { setCaptchaReturnUrl } = userAppContext();
+  const { setCaptchaReturnUrl } = useAppContext();
 
   const [price, setPrice] = useState<{ amount: number; offer: number }>({
     amount: 0,
@@ -50,7 +50,7 @@ const PricingComponent = ({
             action: { callback: () => {} },
           });
           const endpoint =
-            (process.env.APP_API_URL || "http://192.168.0.101:3001") +
+            (process.env.APP_API_URL || "http://192.168.0.100:3001") +
             "/v1/config";
           const response = await axios.get(endpoint, {
             headers: { "x-did": getDid() },

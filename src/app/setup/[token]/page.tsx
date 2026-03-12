@@ -105,6 +105,7 @@ const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
           {step !== null ? (
             [
               <PricingComponent
+                key={0}
                 setupToken={token}
                 setStatus={setStatus}
                 setStep={setStep}
@@ -112,6 +113,7 @@ const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
                 setConfig={setConfig}
               />,
               <CheckoutComponent
+                key={1}
                 config={config}
                 setStatus={setStatus}
                 setupToken={token}

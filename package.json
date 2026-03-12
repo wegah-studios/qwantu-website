@@ -17,7 +17,6 @@
     "@mui/material-nextjs": "^7.3.0",
     "@netlify/plugin-nextjs": "^5.12.1",
     "axios": "^1.13.5",
-    "base64url": "^3.0.1",
     "jwt-decode": "^4.0.0",
     "next": "^15.5.9",
     "react": "19.1.0",
