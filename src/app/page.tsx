@@ -15,9 +15,10 @@ import React from "react";
 
 const Home = () => {
   const faqs = loadFaqs(5);
+
   return (
     <>
-      <Header hidden actionUrl={process.env.APP_URL as string} />
+      <Header hidden actionUrl={process.env.NEXT_PUBLIC_APP_URL as string} />
       <Box
         component={"main"}
         maxWidth={"1200px"}
@@ -76,7 +77,7 @@ const Home = () => {
                 </Typography>
               </SlideInComponent>
               <Link
-                href={process.env.APP_URL || "/"}
+                href={process.env.NEXT_PUBLIC_APP_URL || "/"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -194,11 +195,11 @@ export const metadata: Metadata = {
     title: "Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    url: process.env.HOME_URL,
+    url: process.env.NEXT_PUBLIC_HOME_URL,
     siteName: "Qwantu",
     images: [
       {
-        url: process.env.HOME_URL + "/logo.png",
+        url: process.env.NEXT_PUBLIC_HOME_URL + "/logo.png",
         width: 1024,
         height: 1024,
         alt: "Qwantu logo",
@@ -212,6 +213,6 @@ export const metadata: Metadata = {
     title: "Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    images: [process.env.HOME_URL + "/logo.png"],
+    images: [process.env.NEXT_PUBLIC_HOME_URL + "/logo.png"],
   },
 };

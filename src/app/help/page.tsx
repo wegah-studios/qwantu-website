@@ -11,7 +11,7 @@ const page = () => {
   const faqs = loadFaqs();
   return (
     <Box>
-      <Header actionUrl={process.env.APP_URL as string} />
+      <Header actionUrl={process.env.NEXT_PUBLIC_APP_URL as string} />
       <Box
         component={"main"}
         maxWidth={"1200px"}
@@ -56,11 +56,11 @@ export const metadata: Metadata = {
     title: "Help | Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    url: process.env.HOME_URL,
+    url: process.env.NEXT_PUBLIC_HOME_URL,
     siteName: "Qwantu",
     images: [
       {
-        url: process.env.HOME_URL + "/logo.png",
+        url: process.env.NEXT_PUBLIC_HOME_URL + "/logo.png",
         width: 1024,
         height: 1024,
         alt: "Qwantu",
@@ -74,6 +74,6 @@ export const metadata: Metadata = {
     title: "Help | Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    images: [process.env.HOME_URL + "/logo.png"],
+    images: [process.env.NEXT_PUBLIC_HOME_URL + "/logo.png"],
   },
 };

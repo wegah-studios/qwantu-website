@@ -38,6 +38,7 @@ const PricingComponent = ({
     ],
     [],
   );
+  console.log("env: ", process.env);
 
   useEffect(() => {
     if (!config) {
@@ -49,37 +50,43 @@ const PricingComponent = ({
             message: "loading, please wait...",
             action: { callback: () => {} },
           });
-          const endpoint =
-            (process.env.APP_API_URL || "http://192.168.0.100:3001") +
-            "/v1/config";
-          const response = await axios.get(endpoint, {
-            headers: { "x-did": getDid() },
-          });
 
-          const data = response.data as ApiResponse;
+          let endpoint = process.env.NEXT_PUBLIC_API_URL;
 
-          if (!data.success) {
+          if (endpoint) {
+            endpoint += "/v1/config";
+
+            const response = await axios.get(endpoint, {
+              headers: { "x-did": getDid() },
+            });
+
+            const data = response.data as ApiResponse;
+
+            if (!data.success) {
+              throw new Error();
+            }
+
+            let { tokens, ...config } = data.data as Config & {
+              tokens: { type: string; value: string }[];
+            };
+
+            let pricing = {
+              amount:
+                config.price.amount - config.price.amount * config.price.offer,
+              offer: config.price.amount,
+            };
+
+            setConfig(config);
+
+            setPrice(pricing);
+            setStatus({
+              open: false,
+              type: "loading",
+              action: { callback: () => {} },
+            });
+          } else {
             throw new Error();
           }
-
-          let { tokens, ...config } = data.data as Config & {
-            tokens: { type: string; value: string }[];
-          };
-
-          let pricing = {
-            amount:
-              config.price.amount - config.price.amount * config.price.offer,
-            offer: config.price.amount,
-          };
-
-          setConfig(config);
-
-          setPrice(pricing);
-          setStatus({
-            open: false,
-            type: "loading",
-            action: { callback: () => {} },
-          });
         } catch (error: any) {
           if (error.message !== "Network Error" && !!error.response?.data) {
             const data = error.response.data as ApiResponse;

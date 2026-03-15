@@ -53,28 +53,34 @@ const CheckoutComponent = ({
         action: { callback: () => {} },
       });
 
-      const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
-        "/v1/users/checkout";
+      let endpoint = process.env.NEXT_PUBLIC_API_URL;
 
-      const response = await axios.post(
-        endpoint,
-        {},
-        {
-          headers: { Authorization: "Bearer " + setupToken, "x-did": getDid() },
-        },
-      );
+      if (endpoint) {
+        endpoint += "/v1/users/checkout";
+        const response = await axios.post(
+          endpoint,
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + setupToken,
+              "x-did": getDid(),
+            },
+          },
+        );
 
-      let data = response.data as ApiResponse;
+        let data = response.data as ApiResponse;
 
-      if (!data.data.tokens.length) {
-        throw new Error("Link broken.");
+        if (!data.data.tokens.length) {
+          throw new Error("Link broken.");
+        }
+
+        let checkoutTk = data.data.tokens[0].value;
+
+        setCheckoutToken(checkoutTk);
+        setStatus({ open: false, type: "loading", action: { callback() {} } });
+      } else {
+        throw new Error();
       }
-
-      let checkoutTk = data.data.tokens[0].value;
-
-      setCheckoutToken(checkoutTk);
-      setStatus({ open: false, type: "loading", action: { callback() {} } });
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {
         const data = error.response.data as ApiResponse;
@@ -190,33 +196,38 @@ const CheckoutComponent = ({
         body.inviteCode = inviteCode;
       }
 
-      const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
-        "/v1/payments/initiate";
-      await axios.post(endpoint, body, {
-        headers: {
-          Authorization: "Bearer " + checkoutToken,
-          "x-did": getDid(),
-        },
-      });
+      let endpoint = process.env.NEXT_PUBLIC_API_URL;
 
-      setStatus({
-        open: true,
-        type: "success",
-        title: "Payment prompt sent.",
-        message:
-          "The payment prompt has been sent to your phone, once payment is received you will receive an email confirming account setup.",
-        action: {
-          callback: () => {
-            setCheckoutStep(2);
-            setStatus({
-              open: false,
-              type: "loading",
-              action: { callback: () => {} },
-            });
+      if (endpoint) {
+        endpoint += "/v1/payments/initiate";
+
+        await axios.post(endpoint, body, {
+          headers: {
+            Authorization: "Bearer " + checkoutToken,
+            "x-did": getDid(),
           },
-        },
-      });
+        });
+
+        setStatus({
+          open: true,
+          type: "success",
+          title: "Payment prompt sent.",
+          message:
+            "The payment prompt has been sent to your phone, once payment is received you will receive an email confirming account setup.",
+          action: {
+            callback: () => {
+              setCheckoutStep(2);
+              setStatus({
+                open: false,
+                type: "loading",
+                action: { callback: () => {} },
+              });
+            },
+          },
+        });
+      } else {
+        throw new Error()
+      }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {
         const data = error.response.data as ApiResponse;

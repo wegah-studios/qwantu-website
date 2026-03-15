@@ -83,11 +83,10 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
     challengeToken: string,
   ) => {
     try {
-      const endpoint =
-        (process.env.APP_API_URL || "http://192.168.0.100:3001") +
-        "/v1/captcha/verify";
-
-      await axios.post(
+      let endpoint = process.env.NEXT_PUBLIC_API_URL
+      if(endpoint){
+        endpoint += "/v1/captcha/verify"
+        await axios.post(
         endpoint,
         { response: captchaToken },
         {
@@ -107,6 +106,9 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
           callback: handleVerified,
         },
       });
+      }else{
+        throw new Error()
+      }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;

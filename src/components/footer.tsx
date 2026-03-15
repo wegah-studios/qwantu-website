@@ -19,7 +19,7 @@ const Footer = () => {
     >
       <Link
         href={
-          process.env.COMPANY_URL ||
+          process.env.NEXT_PUBLIC_COMPANY_URL ||
           "https://www.linkedin.com/in/joshua-wegah-67b83428b/"
         }
         target="_blank"
