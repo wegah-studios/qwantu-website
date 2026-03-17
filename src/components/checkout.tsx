@@ -64,6 +64,7 @@ const CheckoutComponent = ({
             headers: {
               Authorization: "Bearer " + setupToken,
               "x-did": getDid(),
+              "ngrok-skip-browser-warning": "true",
             },
           },
         );
@@ -205,6 +206,7 @@ const CheckoutComponent = ({
           headers: {
             Authorization: "Bearer " + checkoutToken,
             "x-did": getDid(),
+            "ngrok-skip-browser-warning": "true",
           },
         });
 
@@ -226,7 +228,7 @@ const CheckoutComponent = ({
           },
         });
       } else {
-        throw new Error()
+        throw new Error();
       }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {

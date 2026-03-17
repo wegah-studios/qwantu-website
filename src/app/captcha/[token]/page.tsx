@@ -83,31 +83,32 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
     challengeToken: string,
   ) => {
     try {
-      let endpoint = process.env.NEXT_PUBLIC_API_URL
-      if(endpoint){
-        endpoint += "/v1/captcha/verify"
+      let endpoint = process.env.NEXT_PUBLIC_API_URL;
+      if (endpoint) {
+        endpoint += "/v1/captcha/verify";
         await axios.post(
-        endpoint,
-        { response: captchaToken },
-        {
-          headers: {
-            Authorization: "Bearer " + challengeToken,
-            "x-did": getDid(),
+          endpoint,
+          { response: captchaToken },
+          {
+            headers: {
+              Authorization: "Bearer " + challengeToken,
+              "x-did": getDid(),
+              "ngrok-skip-browser-warning": "true",
+            },
           },
-        },
-      );
+        );
 
-      setStatus({
-        open: true,
-        type: "success",
-        title: "Verification complete",
-        message: `You have completed the verification, ${captchaReturnUrl ? "click 'OK' to continue." : "you can close this page."}`,
-        action: {
-          callback: handleVerified,
-        },
-      });
-      }else{
-        throw new Error()
+        setStatus({
+          open: true,
+          type: "success",
+          title: "Verification complete",
+          message: `You have completed the verification, ${captchaReturnUrl ? "click 'OK' to continue." : "you can close this page."}`,
+          action: {
+            callback: handleVerified,
+          },
+        });
+      } else {
+        throw new Error();
       }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {

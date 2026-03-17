@@ -57,7 +57,10 @@ const PricingComponent = ({
             endpoint += "/v1/config";
 
             const response = await axios.get(endpoint, {
-              headers: { "x-did": getDid() },
+              headers: {
+                "x-did": getDid(),
+                "ngrok-skip-browser-warning": "true",
+              },
             });
 
             const data = response.data as ApiResponse;
