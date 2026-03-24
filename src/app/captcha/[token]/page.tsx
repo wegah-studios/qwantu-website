@@ -101,7 +101,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
       let endpoint = process.env.NEXT_PUBLIC_API_URL;
       if (endpoint) {
         endpoint += "/v1/captcha/verify";
-        await axios.post(
+        let response = await axios.post(
           endpoint,
           { response: captchaToken },
           {
@@ -114,21 +114,24 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
           },
         );
 
-        updateIdemKeys("verify");
+        if (response.data) {
+          updateIdemKeys("verify");
 
-        setStatus({
-          open: true,
-          type: "success",
-          title: "Verification complete",
-          message: `You have completed the verification, ${captchaReturnUrl ? "click 'OK' to continue." : "you can close this page."}`,
-          action: {
-            callback: handleVerified,
-          },
-        });
+          setStatus({
+            open: true,
+            type: "success",
+            title: "Verification complete",
+            message: `You have completed the verification, ${captchaReturnUrl ? "click 'OK' to continue." : "you can close this page."}`,
+            action: {
+              callback: handleVerified,
+            },
+          });
+        }
       } else {
         throw new Error();
       }
     } catch (error: any) {
+      updateIdemKeys("verify");
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;
         if (responseCode === 1 || 23) {

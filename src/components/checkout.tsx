@@ -93,9 +93,9 @@ const CheckoutComponent = ({
             },
           },
         );
-        updateIdemKeys("checkout");
 
         if (response.data) {
+          updateIdemKeys("checkout");
           let { data, success } = response.data as ApiResponse;
 
           let checkoutTk = data.tokens.find(({ type }) => type === "checkout");
@@ -115,6 +115,7 @@ const CheckoutComponent = ({
         throw new Error();
       }
     } catch (error: any) {
+      updateIdemKeys("checkout");
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;
         if (responseCode === 1 || responseCode === 23) {
@@ -234,7 +235,7 @@ const CheckoutComponent = ({
       if (endpoint) {
         endpoint += "/v1/payments/initiate";
 
-        await axios.post(endpoint, body, {
+        let response = await axios.post(endpoint, body, {
           headers: {
             Authorization: "Bearer " + checkoutToken,
             "x-did": getDid(),
@@ -242,29 +243,32 @@ const CheckoutComponent = ({
             "ngrok-skip-browser-warning": "true",
           },
         });
-        updateIdemKeys("initiate");
+        if (response.data) {
+          updateIdemKeys("initiate");
 
-        setStatus({
-          open: true,
-          type: "success",
-          title: "Payment prompt sent.",
-          message:
-            "The payment prompt has been sent to your phone, once payment is received you will receive an email confirming account setup.",
-          action: {
-            callback: () => {
-              setCheckoutStep(2);
-              setStatus({
-                open: false,
-                type: "loading",
-                action: { callback: () => {} },
-              });
+          setStatus({
+            open: true,
+            type: "success",
+            title: "Payment prompt sent.",
+            message:
+              "The payment prompt has been sent to your phone, once payment is received you will receive an email confirming account setup.",
+            action: {
+              callback: () => {
+                setCheckoutStep(2);
+                setStatus({
+                  open: false,
+                  type: "loading",
+                  action: { callback: () => {} },
+                });
+              },
             },
-          },
-        });
+          });
+        }
       } else {
         throw new Error();
       }
     } catch (error: any) {
+      updateIdemKeys("initiate");
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;
         if (responseCode === 23 || 2) {
@@ -414,7 +418,7 @@ const CheckoutComponent = ({
             >
               Ask them for their invite code, and qualify them for a full refund
               (optional).
-            </Typography> 
+            </Typography>
             <TextField
               label="Invite Code"
               name="inviteCode"
