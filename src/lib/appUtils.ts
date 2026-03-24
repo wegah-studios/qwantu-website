@@ -1,10 +1,14 @@
 import * as uuid from "uuid";
 
+export const generateUID = () => {
+  return uuid.v4();
+};
+
 export const getDid = () => {
   let id = localStorage.getItem("did");
 
   if (!id) {
-    id = uuid.v4();
+    id = generateUID();
     localStorage.setItem("did", id);
   }
 

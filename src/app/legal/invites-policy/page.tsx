@@ -1,10 +1,10 @@
 import loadLegalDocumentation from "@/lib/loadLegalDocumentation";
-import { Box, Link, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Metadata } from "next";
 import React from "react";
 
-const RefundPolicyPage = () => {
-  const documentation = loadLegalDocumentation("refund-policy");
+const InvitesPolicyPage = () => {
+  const documentation = loadLegalDocumentation("invites-policy");
   return (
     <Box
       pt={"50px"}
@@ -13,7 +13,7 @@ const RefundPolicyPage = () => {
       flexDirection={"column"}
       gap={"50px"}
     >
-      <Typography variant="h1">Refund Policy</Typography>
+      <Typography variant="h1">Invites Policy</Typography>
       <Paper
         variant="outlined"
         sx={{
@@ -44,11 +44,11 @@ const RefundPolicyPage = () => {
   );
 };
 
-export default RefundPolicyPage;
+export default InvitesPolicyPage;
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Qwantu",
-  description: "Our Refund Policy",
+  title: "Invites Policy | Qwantu",
+  description: "Our Invites Policy",
   keywords: [
     "wegah",
     "wegah studios",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     "tracker",
   ],
   openGraph: {
-    title: "Refund Policy | Qwantu",
+    title: "Invites Policy | Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
     url: process.env.NEXT_PUBLIC_HOME_URL,
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Refund Policy | Qwantu",
+    title: "Invites Policy | Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
     images: [process.env.NEXT_PUBLIC_HOME_URL + "/logo.png"],

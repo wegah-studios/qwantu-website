@@ -9,39 +9,19 @@
   },
   {
     "question": "How can I send feedback?",
-    "answer": "You can send feedback down below or long pressing the '?' button on the app."
+    "answer": "You can send feedback down below or long pressing the '?' button on the app. You can also leave a review on play store if you're interested."
   },
   {
-    "question": "How do I add expenses?",
-    "answer": "There are 4 ways to add expenses to the app. You can import from M-pesa statements, import from M-pesa messages, import from an Excel File, or fill out the expense form manually. All options are available when you press the '+' button on the app."
+    "question": "Can I refund my account?",
+    "answer": "If you want to delete your account and request a refund you can do so within five (5) days of your account purchase, by going to your profile and going to advanced options. You can also get a full refund without deleting your account via invites."
   },
   {
-    "question": "How do I import expenses from M-pesa statements?",
-    "answer": "Open the M-pesa app and go to your statements (press 'view all' or 'view statements'), then export your statements, a pdf file will be generated. Download the pdf file and open the Qwantu app, press the '+' button and press 'M-pesa statement' select the pdf file and the expenses will be extracted automatically."
+    "question": "How can I get a full refund via invites?",
+    "answer": "Opt into our invites refund program (optional) and get and invite code that you can share with your friends, once they setup their accounts with your invite code, you're credited with an invite. Once you maintain enough invites you are eligible to claim a full refund."
   },
   {
-    "question": "How do I import expenses from M-pesa messages?",
-    "answer": "Open the messages app and go to the M-pesa messages. Press and hold and select as many mpesa messages as you need and copy them. Open the Qwantu app, press '+' and select 'M-pesa messages', paste your messages there and press 'done'.The expenses will be extracted automatically. "
-  },
-  {
-    "question": "How do I import expeses from an Excel file?",
-    "answer": "To import expenses from an excel file each row should have a 'label', 'recipient', 'amount' and 'date'. Press '+' and select 'Excel File', then choose the file. "
-  },
-  {
-    "question": "How can I edit expenses?",
-    "answer": "You can edit individual or multiple expenses by navigating to the 'Expenses' tab selecting a collection and long pressing to select one or multiple expenses to edit."
-  },
-  {
-    "question": "How do I view insights?",
-    "answer": "Select the 'insights' tab, you'll be able to view insights for a given date. Select different dates and expenses for more insights. "
-  },
-  {
-    "question": "How do I add a budget?",
-    "answer": "Select the 'budget' tab, and press the '+' button. Set the budget amount and select a duration, you can set a label if you only want to track expenses with that label or leave it empty if you want to track all expenses. The budget will be tracked automatically."
-  },
-  {
-    "question": "Can I automatically assign labels for expenses?",
-    "answer": "Yes, go to your dictionary by pressing the '📘' icon on the home page, here you'll find 'Keywords' and 'Recipients' which are used to assign labels to expenses when importing from Mpesa statements and messages. 'Keywords' assign a label when the recipient of an expense contains the given keyword ('mart' -> 'Quickmart'). 'Recipients' assign a label when the recipient of an expense is an exact match ('Quickmart' -> 'Quickmart')."
+    "question": "Do I have to get an invite code?",
+    "answer": "The app is fully functional without opting into our invites refund program and you don't have to opt in for any functionality. Only opt in if you're interested."
   },
   {
     "question": "What if an Error occurs?",

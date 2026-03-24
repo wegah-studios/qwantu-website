@@ -1,0 +1,54 @@
+[
+  {
+    "title": "You login",
+    "description": "Login to your account to get started."
+  },
+  {
+    "title": "Go to settings",
+    "description": "Go to your settings to access your profile."
+  },
+  {
+    "title": "Go to profile",
+    "description": "Navigate to your profile to access your invite code."
+  },
+  {
+    "title": "Get your invite code",
+    "description": "Opt-in to get your invite code. (If you don't see this option your account does not have access to invite codes for now.)"
+  },
+  {
+    "title": "Copy your invite code",
+    "description": "Press the copy button to copy your invite code"
+  },
+  {
+    "title": "Share your invite code",
+    "description": "Share your invite code to your friends and family via messages or emails."
+  },
+  {
+    "title": "Your friend uses your invite code",
+    "description": "Your friends and family use your invite code while setting up their accounts."
+  },
+  {
+    "title": "They successfully setup their accounts",
+    "description": "Once their accounts are successfully setup, you are credited with an invite."
+  },
+  {
+    "title": "Progress is shown on your profile",
+    "description": "You can view how many friends you've invited on your profile."
+  },
+  {
+    "title": "Once enough friends are invited",
+    "description": "Check your profile to see if enough friends have been invited."
+  },
+  {
+    "title": "Claim your refund",
+    "description": "After the wait period, claim your account refund."
+  },
+  {
+    "title": "We receive the request",
+    "description": "Once your claim receives approval your refund will be processed. (within 2-3 business days) "
+  },
+  {
+    "title": "You'll be notified",
+    "description": "You'll be notified once your refund gets approved and paid."
+  }
+]

@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
+  const date = new Date()
   return (
     <Paper
       component={"footer"}
@@ -42,7 +43,7 @@ const Footer = () => {
         />
         <Typography>Made by Wegah Studios</Typography>
         <Typography sx={{ color: "text.secondary", fontSize: "0.8rem" }}>
-          © 2025 All rights reserved
+          © 2025 - {date.getFullYear()} All rights reserved
         </Typography>
       </Link>
       <Box
@@ -52,6 +53,18 @@ const Footer = () => {
         justifyContent={"center"}
         flexWrap={"wrap"}
       >
+        <Link
+          style={{ color: "inherit", textDecoration: "none" }}
+          href={"/legal/refund-policy"}
+        >
+          Refund Policy
+        </Link>
+        <Link
+          style={{ color: "inherit", textDecoration: "none" }}
+          href={"/legal/invites-policy"}
+        >
+          Invites Policy
+        </Link>
         <Link
           style={{ color: "inherit", textDecoration: "none" }}
           href={"/legal/terms-of-service"}

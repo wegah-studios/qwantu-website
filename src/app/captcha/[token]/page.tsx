@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { getDid } from "@/lib/appUtils";
+import { generateUID, getDid } from "@/lib/appUtils";
 import { useAppContext } from "@/context/appContext";
 import ContactForm from "@/components/contactForm";
 
@@ -17,6 +17,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
   const { captchaReturnUrl, setCaptchaReturnUrl } = useAppContext();
 
   const [_challengeToken, setChallengeToken] = useState<string>("");
+  const [idemKeys, setIdemKeys] = useState({ verify: generateUID() });
   const [status, setStatus] = useState<Status>({
     open: true,
     type: "loading",
@@ -78,6 +79,20 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
     handleToken();
   }, []);
 
+  const updateIdemKeys = (...keys: string[]) => {
+    setIdemKeys((prev) => {
+      let update = keys.reduce(
+        (obj, key) => {
+          obj[key] = generateUID();
+          return obj;
+        },
+        {} as Record<string, any>,
+      );
+
+      return { ...prev, ...update };
+    });
+  };
+
   const verifyCaptcha = async (
     captchaToken: string,
     challengeToken: string,
@@ -93,10 +108,13 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
             headers: {
               Authorization: "Bearer " + challengeToken,
               "x-did": getDid(),
+              "x-idem-key": idemKeys.verify,
               "ngrok-skip-browser-warning": "true",
             },
           },
         );
+
+        updateIdemKeys("verify");
 
         setStatus({
           open: true,

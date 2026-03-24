@@ -1,5 +1,10 @@
 import { useAppContext } from "@/context/appContext";
-import { getDid, inputErrors, normalizeInput } from "@/lib/appUtils";
+import {
+  generateUID,
+  getDid,
+  inputErrors,
+  normalizeInput,
+} from "@/lib/appUtils";
 import { ApiResponse, Config, Status } from "@/types/common";
 import {
   ArrowRightAltRounded,
@@ -39,10 +44,28 @@ const CheckoutComponent = ({
     inviteCode?: string;
   }>({ phoneNumber: "required" });
   const [touched, setTouched] = useState<Set<string>>(new Set());
+  const [idemKeys, setIdemKeys] = useState({
+    checkout: generateUID(),
+    initiate: generateUID(),
+  });
 
   useEffect(() => {
     fetchCheckoutToken();
   }, []);
+
+  const updateIdemKeys = (...keys: string[]) => {
+    setIdemKeys((prev) => {
+      let update = keys.reduce(
+        (obj, key) => {
+          obj[key] = generateUID();
+          return obj;
+        },
+        {} as Record<string, any>,
+      );
+
+      return { ...prev, ...update };
+    });
+  };
 
   const fetchCheckoutToken = async () => {
     try {
@@ -64,10 +87,12 @@ const CheckoutComponent = ({
             headers: {
               Authorization: "Bearer " + setupToken,
               "x-did": getDid(),
+              "x-idem-key": idemKeys.checkout,
               "ngrok-skip-browser-warning": "true",
             },
           },
         );
+        updateIdemKeys("checkout");
 
         let data = response.data as ApiResponse;
 
@@ -206,9 +231,11 @@ const CheckoutComponent = ({
           headers: {
             Authorization: "Bearer " + checkoutToken,
             "x-did": getDid(),
+            "x-idem-key": idemKeys.initiate,
             "ngrok-skip-browser-warning": "true",
           },
         });
+        updateIdemKeys("initiate");
 
         setStatus({
           open: true,

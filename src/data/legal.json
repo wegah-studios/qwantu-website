@@ -43,40 +43,96 @@
       "description": "We respect your privacy and are committed to protecting it. This Privacy Policy explains how our app 'Qwantu' handles your data and your personal information when you visit our website or use our app."
     },
     {
-      "title": "1. Data Storage",
-      "description": "All of your data — including expenses, receipts, images, and other related records — is stored securely on your device only. We do not collect, transmit, or store your data on our servers."
+      "title": "1. In-App Data Storage",
+      "description": "All of your expense data — including expenses, budgets, preferences, receipts, images, and other related records — is stored securely on your device only. We do not collect, transmit, or store your expense data on our servers."
     },
     {
-      "title": "2. No Account or Login Required",
-      "description": "The App works fully offline. There is no login, registration, or account creation required to use it."
+      "title": "2. Account Data storage",
+      "description": "The app collects and stores user emails for account login and user phone numbers used for account setup. These are only used to login and process setup/refunds and are not shared with any third parties."
     },
     {
-      "title": "3. Automatic Expense capture",
+      "title": "3. Offline functionality",
+      "description": "All of your expense data and app functionality are fully available offline, only logins, profile information, refunds and account deletions require an internet connection."
+    },
+    {
+      "title": "4. Automatic Expense capture",
       "description": "This is an opt-in feature that allows the app to automatically capture expenses from 'Mpesa'. Only Messages received from 'Mpesa' are used and of those, only the ones with a specific format are processed by the app. No sms message is accessed outside the device at any point, all processing is done natively on the device by the app. All your data is only available on your device no external storage is used."
     },
     {
-      "title": "4. Data Processing",
+      "title": "5. Data Processing",
       "description": "All expense tracking, parsing, and categorization features are executed locally on your device. No information is sent to external servers or third parties."
     },
     {
-      "title": "5. Data Export",
+      "title": "6. Data Export",
       "description": "If you choose to export your data, the files are generated on your device. Once exported, it is your responsibility to manage and share these files. The App does not control or monitor where your exported data is sent."
     },
     {
-      "title": "6. Feedback and Support",
-      "description": "If you send us feedback via email, your message will be handled by your own device’s email client. We do not automatically collect or track feedback or personal information."
+      "title": "7. Feedback and Support",
+      "description": "If you send us feedback via email, your message will be handled by your own device’s email client."
     },
     {
-      "title": "7. Third-Party Services",
+      "title": "8. Third-Party Services",
       "description": "No data is shared with or accessed by third-parties at any time while using the app."
     },
     {
-      "title": "8. Security",
-      "description": "Because your data never leaves your device, its protection depends on the security of your device itself. We recommend using standard device security measures (such as a passcode or biometric lock) to safeguard your information."
+      "title": "9. Security",
+      "description": "Because your expense data never leaves your device, its protection depends on the security of your device itself. We recommend using standard device security measures (such as a passcode or biometric lock) to safeguard your information."
     },
     {
-      "title": "9. Updates to this Policy",
+      "title": "10. Updates to this Policy",
       "description": "This Privacy Policy may be updated from time to time to reflect changes in the App or legal requirements. Updates will be posted on our official website. Continued use of the App after changes constitutes your acceptance of the updated policy."
+    }
+  ],
+  "refund-policy": [
+    {
+      "title": "1. General Refund Eligibility",
+      "description": "Refunds are offered to select accounts under the following conditions; Refund requests must be submitted within five (5) calendar days from the date of purchase and requests must not be fraudulent."
+    },
+    {
+      "title": "2. Refund Request Process",
+      "description": "Once a refund request is submitted, the user’s account will be temporarily suspended, and login access will be restricted during the review period. We will review account activity and associated data, to determine the validity of the request."
+    },
+    {
+      "title": "3. Fraud Review and Determination",
+      "description": "If a refund request is determined to be fraudulent; The user will be notified via email of the decision their account will be deactivated, however if the user logs back into the account within 30 days, access will be restored with full functionality; the user will, however, no longer be eligible to request refunds in the future. If the user has questions or wishes to dispute the decision: they may respond by forwarding the decision email to our support team, we will review and respond accordingly."
+    },
+    {
+      "title": "4. Approved Refunds",
+      "description": "If a refund request is approved: The refund will be issued to the original payment method used at account creation. This method cannot be changed. The refunded amount will be the amount paid for account setup minus transaction and processing fees. An email confirmation, including an invoice, will be sent upon completion. Following a successful refund: the user’s account will be deactivated and will be restricted from signing up or logging in using the same email for a period of 30 days. After this period, access may be restored only upon repurchasing the account."
+    },
+    {
+      "title": "5. Processing Timeline",
+      "description": "All approved refunds, including those under the invite program, will be processed within 2-3 business days from the date of approval."
+    },
+    {
+      "title": "6. Amendments ",
+      "description": "We reserve the right to modify or update this Refund Policy at any time without prior notice. Continued use of the application and the invite refund program constitutes acceptance of any revised terms. For any inquiries or support requests, users may contact our support team through the official communication channels provided within the application and this website."
+    }
+  ],
+  "invites-policy": [
+    {
+      "title": "Invites refund program",
+      "description": "We offer an Invites Refund Program that select users can opt into to qualify for a full refund with no time limitation by inviting friends with their invite code, this program is completely optional and not necessary for any functionality of the application. This program is strictly promotional and does not constitute an investment opportunity, income stream, or financial return mechanism and is subject to our refund policy and the following terms."
+    },
+    {
+      "title": "1. Program Participation",
+      "description": "The select users who opt into the program will receive a unique invite code. This code may be shared with others and used during account setup."
+    },
+    {
+      "title": "2. Invite Qualification",
+      "description": "An invite is counted only when: A user sets up their account using the invite code and account setup is successfull. An invite will be removed if the invited user later requests and receives a refund."
+    },
+    {
+      "title": "3. Refund Eligibility via invites",
+      "description": "Opted in users become eligible for a full refund after successfully maintaining five (5) valid invites."
+    },
+    {
+      "title": "4. Claim Waiting Period",
+      "description": "Once eligibility is achieved, opted in users must wait seven (7) days before submitting a refund claim, this waiting period allows for potential refund requests from referred users to be processed. "
+    },
+    {
+      "title": "5. Invites Refund Processing",
+      "description": "After submission, the refund request will undergo the same review and verification process as standard refunds. The user will be notified of the final decision via email."
     }
   ]
 }
