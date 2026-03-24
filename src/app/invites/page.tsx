@@ -1,10 +1,14 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import InviteStepComponent from "@/components/inviteStep";
+import RiseUpComponent from "@/components/riseUpComponent";
+import loadInviteSteps from "@/lib/loadInviteSteps";
 import { Box, Link, Paper, Typography } from "@mui/material";
 import React from "react";
 
 const InviteCodePage = () => {
-  
+  const steps = loadInviteSteps();
+
   return (
     <Box>
       <Header actionUrl={process.env.NEXT_PUBLIC_APP_URL as string} />
@@ -34,7 +38,7 @@ const InviteCodePage = () => {
               flexDirection: "column",
               alignItems: "center",
               gap: "20px",
-              padding: "20px",
+              padding: "40px",
               borderRadius: "30px",
             }}
           >
@@ -64,12 +68,22 @@ const InviteCodePage = () => {
               borderRadius: "30px",
             }}
           >
-            <Typography
-              variant="h2"
-              sx={{ fontWeight: 500, textAlign: "center" }}
-            >
-              How it works
-            </Typography>
+            <RiseUpComponent>
+              <Typography
+                variant="h2"
+                sx={{ fontWeight: 500, textAlign: "center" }}
+              >
+                How it works
+              </Typography>
+            </RiseUpComponent>
+            {steps.map((step, index) => (
+              <InviteStepComponent
+                key={index}
+                {...step}
+                reverse={index % 2 !== 0}
+                index={index}
+              />
+            ))}
           </Paper>
         </Box>
         <Footer />

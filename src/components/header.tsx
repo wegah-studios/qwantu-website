@@ -72,11 +72,12 @@ const Header = ({
             }}
           >
             <Image
-              src={"/logo.png"}
+              src={"/logo.jpg"}
               alt="logo"
               width={40}
               height={40}
               style={{
+                borderRadius:"20px",
                 width: "clamp(30px, 3vw, 40px)",
                 height: "clamp(30px, 3vw, 40px)",
               }}

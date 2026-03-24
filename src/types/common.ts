@@ -36,3 +36,9 @@ export type ApiResponse = {
   responseCode: number;
   message: string;
 };
+
+export type InviteStep = {
+  image: string;
+  title: string;
+  description: string;
+};

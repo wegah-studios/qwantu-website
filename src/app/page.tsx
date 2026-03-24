@@ -7,7 +7,7 @@ import RiseUpComponent from "@/components/riseUpComponent";
 import SlideInComponent from "@/components/slideInComponent";
 import loadFaqs from "@/lib/loadFaqs";
 import { EastRounded } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,11 +39,12 @@ const Home = () => {
             alignItems={"center"}
           >
             <Image
-              src={"/logo.png"}
+              src={"/logo.jpg"}
               width={150}
               height={150}
               alt="logo"
               style={{
+                borderRadius: "20px",
                 width: "clamp(100px, 10vw, 150px)",
                 height: "clamp(100px, 10vw, 150px)",
               }}
@@ -103,7 +104,7 @@ const Home = () => {
           <Content
             title="Track your spending with ease"
             description="Automatically track your expenses from M-pesa messages and M-pesa statements. Whether it’s transport, groceries, or a subscription, our intuitive design makes keeping track of your money effortless."
-            image="/pic1.png"
+            image="/expenses.jpg"
           />
         </SlideInComponent>
         <RiseUpComponent>
@@ -111,7 +112,7 @@ const Home = () => {
             reverse
             title="View insights on your expenses"
             description="See where your money really goes with detailed statistics and visual breakdowns. Spot spending trends, compare categories, and make informed financial decisions."
-            image="/pic2.png"
+            image="/insights.jpg"
             color="secondary.main"
           />
         </RiseUpComponent>
@@ -119,7 +120,7 @@ const Home = () => {
           <Content
             title="Automatically track budgets"
             description="Set budgets for categories like food, travel, or entertainment — and let the app do the tracking. Get notified before you overspend and stay on top of your goals."
-            image="/pic3.png"
+            image="/budgets.jpg"
             color="secondary.light"
           />
         </SlideInComponent>
@@ -128,14 +129,14 @@ const Home = () => {
             reverse
             title="Customize your expenses"
             description="Add personalized labels and recipients to each transaction. Whether it’s “Dinner with Sarah” or “Uber Ride,” detailed records make it easier to understand and reflect on your spending habits."
-            image="/pic4.png"
+            image="/features-1.jpg"
           />
         </RiseUpComponent>
         <SlideInComponent>
           <Content
             title="Search, Export and much more"
             description="Quickly find past expenses with powerful search tools, export your data for safekeeping, and look forward to many more features as we continue to grow and improve the app."
-            image="/pic5.png"
+            image="/features-2.jpg"
             color="secondary.main"
           />
         </SlideInComponent>
@@ -165,6 +166,23 @@ const Home = () => {
           </Box>
         </Box>
         <ContactForm />
+        <Link href={"/invites"} style={{ textDecoration: "none" }}>
+          <Paper
+            variant="outlined"
+            sx={{
+              padding: "20px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              borderRadius: "20px",
+              maxWidth: "300px",
+            }}
+          >
+            <Typography>Learn about invites</Typography>
+            <EastRounded />
+          </Paper>
+        </Link>
         <Footer />
       </Box>
     </>
@@ -199,7 +217,7 @@ export const metadata: Metadata = {
     siteName: "Qwantu",
     images: [
       {
-        url: process.env.NEXT_PUBLIC_HOME_URL + "/logo.png",
+        url: process.env.NEXT_PUBLIC_HOME_URL + "/promo.jpg",
         width: 1024,
         height: 1024,
         alt: "Qwantu logo",
@@ -213,6 +231,6 @@ export const metadata: Metadata = {
     title: "Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    images: [process.env.NEXT_PUBLIC_HOME_URL + "/logo.png"],
+    images: [process.env.NEXT_PUBLIC_HOME_URL + "/promo.jpg"],
   },
 };

@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     siteName: "Qwantu",
     images: [
       {
-        url: process.env.NEXT_PUBLIC_HOME_URL + "/logo.png",
+        url: process.env.NEXT_PUBLIC_HOME_URL + "/promo.jpg",
         width: 1024,
         height: 1024,
         alt: "Qwantu",
@@ -84,6 +84,6 @@ export const metadata: Metadata = {
     title: "Privacy policy | Qwantu",
     description:
       "Automatically track your spending, manage your budgets, and gain insights into your financial habits — all in one simple, powerful app.",
-    images: [process.env.NEXT_PUBLIC_HOME_URL + "/logo.png"],
+    images: [process.env.NEXT_PUBLIC_HOME_URL + "/promo.jpg"],
   },
 };

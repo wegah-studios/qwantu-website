@@ -14,6 +14,7 @@ import {
   ExitToAppRounded,
   ForwardRounded,
   GroupsRounded,
+  HomeFilled,
   PhoneAndroidRounded,
 } from "@mui/icons-material";
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -94,23 +95,29 @@ const CheckoutComponent = ({
         );
         updateIdemKeys("checkout");
 
-        let data = response.data as ApiResponse;
+        if (response.data) {
+          let { data, success } = response.data as ApiResponse;
 
-        if (!data.data.tokens.length) {
-          throw new Error("Link broken.");
+          let checkoutTk = data.tokens.find(({ type }) => type === "checkout");
+
+          if (!checkoutTk || !success) {
+            throw new Error("Link broken.");
+          }
+
+          setCheckoutToken(checkoutTk.value);
+          setStatus({
+            open: false,
+            type: "loading",
+            action: { callback() {} },
+          });
         }
-
-        let checkoutTk = data.data.tokens[0].value;
-
-        setCheckoutToken(checkoutTk);
-        setStatus({ open: false, type: "loading", action: { callback() {} } });
       } else {
         throw new Error();
       }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {
-        const data = error.response.data as ApiResponse;
-        if (data.responseCode === 1 || data.responseCode === 23) {
+        const { data, responseCode } = error.response.data as ApiResponse;
+        if (responseCode === 1 || responseCode === 23) {
           setStatus({
             open: true,
             type: "expired",
@@ -122,8 +129,8 @@ const CheckoutComponent = ({
               },
             },
           });
-        } else if (data.responseCode === 429 && data.data.tokens.length) {
-          let challengeTk = data.data.tokens.find(
+        } else if (responseCode === 429 && data.tokens.length) {
+          let challengeTk = data.tokens.find(
             ({ type }) => type === "challenge",
           );
           if (challengeTk) {
@@ -196,7 +203,7 @@ const CheckoutComponent = ({
     ) {
       makePayment();
     } else if (checkoutStep === 2) {
-      router.replace("/legal/terms-of-service");
+      router.replace("/invites");
     }
   };
 
@@ -259,8 +266,8 @@ const CheckoutComponent = ({
       }
     } catch (error: any) {
       if (error.message !== "Network Error" && !!error.response?.data) {
-        const data = error.response.data as ApiResponse;
-        if (data.responseCode === 23 || 2) {
+        const { data, responseCode } = error.response.data as ApiResponse;
+        if (responseCode === 23 || 2) {
           setStatus({
             open: true,
             type: "error",
@@ -272,9 +279,9 @@ const CheckoutComponent = ({
               },
             },
           });
-        } else if (data.responseCode === 1) {
-          if (data.data.tokens.length) {
-            let newCheckoutTk = data.data.tokens[0].value;
+        } else if (responseCode === 1) {
+          if (data.tokens.length) {
+            let newCheckoutTk = data.tokens[0].value;
             setCheckoutToken(newCheckoutTk);
           }
           setStatus({
@@ -295,8 +302,8 @@ const CheckoutComponent = ({
               },
             },
           });
-        } else if (data.responseCode === 429 && data.data.tokens.length) {
-          let challengeTk = data.data.tokens.find(
+        } else if (responseCode === 429 && data.tokens.length) {
+          let challengeTk = data.tokens.find(
             ({ type }) => type === "challenge",
           );
           if (challengeTk) {
@@ -405,9 +412,9 @@ const CheckoutComponent = ({
               textAlign={"center"}
               sx={{ letterSpacing: "0.1em", maxWidth: "400px" }}
             >
-              Ask them for their invite code, and get them a full refund
+              Ask them for their invite code, and qualify them for a full refund
               (optional).
-            </Typography>
+            </Typography> 
             <TextField
               label="Invite Code"
               name="inviteCode"
@@ -436,23 +443,33 @@ const CheckoutComponent = ({
           </>,
           <>
             <GroupsRounded sx={{ fontSize: "2.5rem" }} />
-            <Typography variant="h2">Did you know?</Typography>
+            <Typography variant="h2">Learn more about invites</Typography>
             <Typography
               textAlign={"center"}
               sx={{ letterSpacing: "0.1em", maxWidth: "400px" }}
             >
-              If you invite just{" "}
-              <strong>{config?.inviteThreshold || 2} friends</strong> using your
-              invite code you’ll be eligible for a full refund.
+              Get your invite code and share it with friends, when they use it
+              while setting up their own accounts you'll get credited with an
+              invite. Invite just five (5) friends and get qualified for a full
+              refund any time.
             </Typography>
-            <Button
-              onClick={handleSubmit}
-              variant="contained"
-              disableElevation
-              endIcon={<EastRounded />}
-            >
-              Learn more
-            </Button>
+            <Box display={"flex"} flexDirection={"column"} gap={"10px"}>
+              <Button
+                onClick={handleSubmit}
+                variant="contained"
+                disableElevation
+                endIcon={<EastRounded />}
+              >
+                Learn more
+              </Button>
+              <Button
+                onClick={() => router.replace("/")}
+                variant="outlined"
+                startIcon={<HomeFilled />}
+              >
+                Back Home
+              </Button>
+            </Box>
           </>,
         ][checkoutStep]
       }

@@ -1,53 +1,66 @@
 [
   {
+    "image": "/invite-steps/login.jpg",
     "title": "You login",
     "description": "Login to your account to get started."
   },
   {
+    "image": "/invite-steps/home-preferences.jpg",
     "title": "Go to settings",
     "description": "Go to your settings to access your profile."
   },
   {
+    "image": "/invite-steps/preferences-profile.jpg",
     "title": "Go to profile",
     "description": "Navigate to your profile to access your invite code."
   },
   {
+    "image": "/invite-steps/profile-opt-in.jpg",
     "title": "Get your invite code",
     "description": "Opt-in to get your invite code. (If you don't see this option your account does not have access to invite codes for now.)"
   },
   {
+    "image": "/invite-steps/invite-copy.jpg",
     "title": "Copy your invite code",
     "description": "Press the copy button to copy your invite code"
   },
   {
+    "image": "/invite-steps/invite-share.jpg",
     "title": "Share your invite code",
     "description": "Share your invite code to your friends and family via messages or emails."
   },
   {
+    "image": "/invite-steps/setup-code.jpg",
     "title": "Your friend uses your invite code",
     "description": "Your friends and family use your invite code while setting up their accounts."
   },
   {
+    "image": "/invite-steps/setup-done.jpg",
     "title": "They successfully setup their accounts",
     "description": "Once their accounts are successfully setup, you are credited with an invite."
   },
   {
+    "image": "/invite-steps/invite-progress.jpg",
     "title": "Progress is shown on your profile",
     "description": "You can view how many friends you've invited on your profile."
   },
   {
+    "image": "/invite-steps/invite-complete.jpg",
     "title": "Once enough friends are invited",
     "description": "Check your profile to see if enough friends have been invited."
   },
   {
+    "image": "/invite-steps/invite-claim.jpg",
     "title": "Claim your refund",
     "description": "After the wait period, claim your account refund."
   },
   {
+    "image": "/invite-steps/refund-process.jpg",
     "title": "We receive the request",
     "description": "Once your claim receives approval your refund will be processed. (within 2-3 business days) "
   },
   {
+    "image": "/invite-steps/invite-paid.jpg",
     "title": "You'll be notified",
     "description": "You'll be notified once your refund gets approved and paid."
   }

@@ -38,7 +38,6 @@ const PricingComponent = ({
     ],
     [],
   );
-  console.log("env: ", process.env);
 
   useEffect(() => {
     if (!config) {
@@ -63,38 +62,41 @@ const PricingComponent = ({
               },
             });
 
-            const data = response.data as ApiResponse;
+            if (response.data) {
+              const { data, success } = response.data as ApiResponse;
 
-            if (!data.success) {
-              throw new Error();
+              if (!success) {
+                throw new Error();
+              }
+
+              let { tokens, ...config } = data as Config & {
+                tokens: { type: string; value: string }[];
+              };
+
+              let pricing = {
+                amount:
+                  config.price.amount -
+                  config.price.amount * config.price.offer,
+                offer: config.price.amount,
+              };
+
+              setConfig(config);
+
+              setPrice(pricing);
+              setStatus({
+                open: false,
+                type: "loading",
+                action: { callback: () => {} },
+              });
             }
-
-            let { tokens, ...config } = data.data as Config & {
-              tokens: { type: string; value: string }[];
-            };
-
-            let pricing = {
-              amount:
-                config.price.amount - config.price.amount * config.price.offer,
-              offer: config.price.amount,
-            };
-
-            setConfig(config);
-
-            setPrice(pricing);
-            setStatus({
-              open: false,
-              type: "loading",
-              action: { callback: () => {} },
-            });
           } else {
             throw new Error();
           }
         } catch (error: any) {
           if (error.message !== "Network Error" && !!error.response?.data) {
-            const data = error.response.data as ApiResponse;
-            if (data.responseCode === 429 && data.data.tokens.length) {
-              let challengeTk = data.data.tokens.find(
+            const { data, responseCode } = error.response.data as ApiResponse;
+            if (responseCode === 429 && data.tokens.length) {
+              let challengeTk = data.tokens.find(
                 ({ type }) => type === "challenge",
               );
               if (challengeTk) {
@@ -157,7 +159,7 @@ const PricingComponent = ({
         }}
       >
         <Image
-          src={"/logo.png"}
+          src={"/logo.jpg"}
           alt="logo"
           width={40}
           height={40}
@@ -222,7 +224,7 @@ const PricingComponent = ({
         />
         <Typography sx={{ fontWeight: 500 }}>Pay with Mpesa</Typography>
       </Button>
-      <Typography>Get a full refund by inviting friends!</Typography>
+      <Typography>Refundable</Typography>
     </Box>
   );
 };

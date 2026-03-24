@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
-  const date = new Date()
+  const date = new Date();
   return (
     <Paper
       component={"footer"}
@@ -35,7 +35,7 @@ const Footer = () => {
         }}
       >
         <Image
-          src={"/wega-studios-logo.png"}
+          src={"/wega-studios-logo.jpg"}
           alt="wega-studios-logo"
           width={30}
           height={30}
