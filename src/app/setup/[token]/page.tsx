@@ -9,11 +9,19 @@ import PricingComponent from "@/components/pricing";
 import CheckoutComponent from "@/components/checkout";
 import { Config, Payload, Status } from "@/types/common";
 import { jwtDecode } from "jwt-decode";
+import { normalizeInput } from "@/lib/appUtils";
 
-const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
+const SetupPage = ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ token: string }>;
+  searchParams: Promise<{ email?: string }>;
+}) => {
   const router = useRouter();
 
   const [token, setToken] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [status, setStatus] = useState<Status>({
     open: false,
     type: "loading",
@@ -27,9 +35,11 @@ const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
       const handleToken = async () => {
         try {
           let urlParams = await params;
+          let search = await searchParams;
+
           let payload = jwtDecode(urlParams.token) as Payload;
 
-          if (payload.type !== "setup") {
+          if (payload.type !== "setup" || !search.email) {
             throw new Error();
           }
 
@@ -52,6 +62,7 @@ const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
 
           //continue
           setToken(urlParams.token);
+          setEmail(normalizeInput(search.email, { whitespace: "" }));
           setStep(0);
         } catch (error) {
           setStatus({
@@ -114,7 +125,7 @@ const SetupPage = ({ params }: { params: Promise<{ token: string }> }) => {
               />,
               <CheckoutComponent
                 key={1}
-                config={config}
+                email={email}
                 setStatus={setStatus}
                 setupToken={token}
               />,

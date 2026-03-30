@@ -69,8 +69,9 @@ const PricingComponent = ({
                 throw new Error();
               }
 
-              let { tokens, ...config } = data as Config & {
+              let { tokens, error, ...config } = data as Config & {
                 tokens: { type: string; value: string }[];
+                error: string | null;
               };
 
               let pricing = {

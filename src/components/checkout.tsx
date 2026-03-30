@@ -23,11 +23,11 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const CheckoutComponent = ({
-  config,
+  email,
   setupToken,
   setStatus,
 }: {
-  config: Config | null;
+  email: string;
   setupToken: string;
   setStatus: React.Dispatch<React.SetStateAction<Status>>;
 }) => {
@@ -83,10 +83,10 @@ const CheckoutComponent = ({
         endpoint += "/v1/users/checkout";
         const response = await axios.post(
           endpoint,
-          {},
+          { email },
           {
+            params: { "setup-token": setupToken },
             headers: {
-              Authorization: "Bearer " + setupToken,
               "x-did": getDid(),
               "x-idem-key": idemKeys.checkout,
               "ngrok-skip-browser-warning": "true",
@@ -217,7 +217,7 @@ const CheckoutComponent = ({
         action: { callback: () => {} },
       });
 
-      let body: Record<string, string> = {};
+      let body: Record<string, string> = { email };
       body.phoneNumber = normalizeInput(form.phoneNumber, {
         whitespace: "",
       }).replace(/^(0|\+254)/, "254");
@@ -236,8 +236,8 @@ const CheckoutComponent = ({
         endpoint += "/v1/payments/initiate";
 
         let response = await axios.post(endpoint, body, {
+          params: { "checkout-token": checkoutToken },
           headers: {
-            Authorization: "Bearer " + checkoutToken,
             "x-did": getDid(),
             "x-idem-key": idemKeys.initiate,
             "ngrok-skip-browser-warning": "true",
@@ -271,7 +271,7 @@ const CheckoutComponent = ({
       updateIdemKeys("initiate");
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;
-        if (responseCode === 23 || 2) {
+        if (responseCode === 23) {
           setStatus({
             open: true,
             type: "error",
@@ -284,6 +284,24 @@ const CheckoutComponent = ({
             },
           });
         } else if (responseCode === 1) {
+          setStatus({
+            open: true,
+            type: "success",
+            title: "Account setup complete.",
+            message:
+              "Your account setup is already complete, proceed to app and sign in.",
+            action: {
+              callback: () => {
+                setCheckoutStep(2);
+                setStatus({
+                  open: false,
+                  type: "loading",
+                  action: { callback: () => {} },
+                });
+              },
+            },
+          });
+        } else if (responseCode === 2) {
           if (data.tokens.length) {
             let newCheckoutTk = data.tokens[0].value;
             setCheckoutToken(newCheckoutTk);

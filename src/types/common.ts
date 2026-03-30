@@ -32,7 +32,10 @@ export type Payload = {
 
 export type ApiResponse = {
   success: boolean;
-  data: Record<string, any> & { tokens: { type: string; value: string }[] };
+  data: Record<string, any> & {
+    tokens: { type: string; value: string }[];
+    error: null | string;
+  };
   responseCode: number;
   message: string;
 };

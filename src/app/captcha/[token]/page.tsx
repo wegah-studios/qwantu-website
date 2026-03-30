@@ -105,8 +105,8 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
           endpoint,
           { response: captchaToken },
           {
+            params: { "challenge-token": challengeToken },
             headers: {
-              Authorization: "Bearer " + challengeToken,
               "x-did": getDid(),
               "x-idem-key": idemKeys.verify,
               "ngrok-skip-browser-warning": "true",
@@ -134,7 +134,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
       updateIdemKeys("verify");
       if (error.message !== "Network Error" && !!error.response?.data) {
         const { data, responseCode } = error.response.data as ApiResponse;
-        if (responseCode === 1 || 23) {
+        if (responseCode === 23 || responseCode === 2) {
           setStatus({
             open: true,
             type: "success",
@@ -144,7 +144,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
               callback: handleVerified,
             },
           });
-        } else if (responseCode === 2 && !!data.tokens.length) {
+        } else if (responseCode === 1 && !!data.tokens.length) {
           let challengeTk = data.tokens.find(
             ({ type }) => type === "challenge",
           );
