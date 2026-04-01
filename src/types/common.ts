@@ -40,7 +40,7 @@ export type ApiResponse = {
   message: string;
 };
 
-export type InviteStep = {
+export type Step = {
   image: string;
   title: string;
   description: string;

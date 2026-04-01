@@ -1,16 +1,16 @@
-import { InviteStep } from "@/types/common";
+import { Step } from "@/types/common";
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import RiseUpComponent from "./riseUpComponent";
 
-const InviteStepComponent = ({
+const StepComponent = ({
   image,
   title,
   description,
   reverse = false,
   index,
-}: InviteStep & { reverse: boolean; index: number }) => {
+}: Step & { reverse: boolean; index: number }) => {
   return (
     <Box
       padding={"40px 20px"}
@@ -61,4 +61,4 @@ const InviteStepComponent = ({
   );
 };
 
-export default InviteStepComponent;
+export default StepComponent;

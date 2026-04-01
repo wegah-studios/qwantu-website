@@ -37,6 +37,8 @@ const SetupPage = ({
           let urlParams = await params;
           let search = await searchParams;
 
+          console.log(search)
+
           let payload = jwtDecode(urlParams.token) as Payload;
 
           if (payload.type !== "setup" || !search.email) {

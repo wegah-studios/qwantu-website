@@ -44,11 +44,11 @@
     },
     {
       "title": "1. In-App Data Storage",
-      "description": "All of your expense data — including expenses, budgets, preferences, receipts, images, and other related records — is stored securely on your device only. We do not collect, transmit, or store your expense data on our servers."
+      "description": "All of your expense data — including expenses, budgets, preferences, receipts, images, and other related records — are stored securely on your device only. We do not collect, transmit, or store your expense data on our servers."
     },
     {
-      "title": "2. Account Data storage",
-      "description": "The app collects and stores user emails for account login and user phone numbers used for account setup. These are only used to login and process setup/refunds and are not shared with any third parties."
+      "title": "2. Account Data",
+      "description": "The app collects and processes user emails and user phone numbers to be used for specific account actions. These are only used for authentification, account setup, and refunds and are not shared with any third parties."
     },
     {
       "title": "3. Offline functionality",

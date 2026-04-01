@@ -1,13 +1,13 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import InviteStepComponent from "@/components/inviteStep";
+import StepComponent from "@/components/step";
 import RiseUpComponent from "@/components/riseUpComponent";
-import loadInviteSteps from "@/lib/loadInviteSteps";
+import loadSteps from "@/lib/loadSteps";
 import { Box, Link, Paper, Typography } from "@mui/material";
 import React from "react";
 
 const InviteCodePage = () => {
-  const steps = loadInviteSteps();
+  const steps = loadSteps("invite");
 
   return (
     <Box>
@@ -77,7 +77,7 @@ const InviteCodePage = () => {
               </Typography>
             </RiseUpComponent>
             {steps.map((step, index) => (
-              <InviteStepComponent
+              <StepComponent
                 key={index}
                 {...step}
                 reverse={index % 2 !== 0}
