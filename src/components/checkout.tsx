@@ -159,7 +159,7 @@ const CheckoutComponent = ({
           message: "Make sure your connected to the internet, then try again.",
           action: {
             callback: () => {
-              router.refresh();
+              window.location.reload();
             },
           },
         });
@@ -249,9 +249,8 @@ const CheckoutComponent = ({
           setStatus({
             open: true,
             type: "success",
-            title: "Payment prompt sent.",
-            message:
-              "The payment prompt has been sent to your phone, once payment is received you will receive an email confirming account setup.",
+            title: "Payment prompt sent. ",
+            message: `The payment prompt has been sent to your phone with ref no:${response.data.ref}, once payment is received you can login`,
             action: {
               callback: () => {
                 setCheckoutStep(2);
@@ -310,17 +309,11 @@ const CheckoutComponent = ({
             open: true,
             type: "error",
             title: "Prompt not sent.",
-            message:
-              "The payment prompt cannot be sent, make sure your phone is unlocked.",
+            message: `The payment prompt could not be sent, make sure that your phone number '${form.phoneNumber}' is correct and can receive M-pesa payment prompts, then try again.`,
             action: {
+              title: "Try Again",
               callback: () => {
-                setStatus({
-                  open: false,
-                  type: "loading",
-                  action: {
-                    callback: () => {},
-                  },
-                });
+                makePayment();
               },
             },
           });
