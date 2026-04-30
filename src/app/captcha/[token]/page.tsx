@@ -93,7 +93,7 @@ const CaptchaPage = ({ params }: { params: Promise<{ token: string }> }) => {
     });
   };
 
-  const    = async (
+  const verifyCaptcha = async (
     captchaToken: string,
     challengeToken: string,
   ) => {
