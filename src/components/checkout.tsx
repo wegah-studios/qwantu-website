@@ -245,12 +245,13 @@ const CheckoutComponent = ({
         });
         if (response.data) {
           updateIdemKeys("initiate");
+          const ref = response.data.data.ref
 
           setStatus({
             open: true,
             type: "success",
             title: "Payment prompt sent. ",
-            message: `The payment prompt has been sent to your phone with ref no:${response.data.ref}, once payment is received you can login`,
+            message: `The payment prompt has been sent to your phone ${ref ? `with ref no:${ref}` : ""}, once payment is received you can login`,
             action: {
               callback: () => {
                 setCheckoutStep(2);

@@ -76,8 +76,8 @@ const PricingComponent = ({
 
               let pricing = {
                 amount:
-                  config.price.amount -
-                  config.price.amount * config.price.offer,
+                  Math.floor(config.price.amount -
+                  config.price.amount * config.price.offer),
                 offer: config.price.amount,
               };
 
